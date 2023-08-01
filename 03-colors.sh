@@ -13,4 +13,4 @@ echo -e "\e[33m I am printing the both color \e[0m"
 echo -e "\e[34m I am printing the both color \e[0m"
 
 
-echo -e "\e[34m;44m I am printing the both color \e[0m"
+echo -e "\e[34;44m I am printing the both color \e[0m"

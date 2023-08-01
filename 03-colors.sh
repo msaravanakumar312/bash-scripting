@@ -9,5 +9,8 @@
 #Blue	34	44
 #####
 
-echo -e "\e[33m I am printing the yellow color \e[0m"
-echo -e "\e[34m I am printing the blue color \e[0m"
+echo -e "\e[33m I am printing the both color \e[0m"
+echo -e "\e[34m I am printing the both color \e[0m"
+
+
+echo -e "\e[34m;44 I am printing the both color \e[0m"

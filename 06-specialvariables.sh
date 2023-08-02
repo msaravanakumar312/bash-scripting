@@ -4,6 +4,10 @@
 
 #Here are few of the special variables : $0 to $9 , $? , $#, $$ , $@
 
+a=10
+b=20
+c=30
+
 echo $0        ## $0 prints the script name you're excuting
 echo "Excuted script name is : $0"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-There are four types of command available :
+#There are four types of command available :
 
 # 1> Binary    : /bin , /sbin
 # 2> Aliases   : Aliases are shortcuts , alias netstat-tulpn*

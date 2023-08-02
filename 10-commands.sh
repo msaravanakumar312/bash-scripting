@@ -15,6 +15,19 @@ sample() {
 
 sample
 
-sample
+Stat() {
+    echo "Number of session opened are $(who | wc -l)"
+    echo "Today date is $date +%F"
+}
 
-sample
+Stat
+
+sleep1
+
+Stat
+
+sleep2
+
+Stat
+
+sleep3

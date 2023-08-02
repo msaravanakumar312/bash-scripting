@@ -8,6 +8,11 @@ a=10
 b=20
 c=30
 
+echo The value of a is $a
+echo The value of b is $b
+echo The value of c is $c
+
+
 echo $0        ## $0 prints the script name you're excuting
 echo "Excuted script name is : $0"
 
@@ -25,6 +30,7 @@ echo "Current topic is $3"
 # $# : is going to print the number of argument
 # $? : is going to print the exit code of the last command
 
+echo $*
 echo $0
 echo $@
 echo $$

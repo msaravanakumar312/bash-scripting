@@ -14,20 +14,18 @@ sample() {
 }
 
 sample
+hai() {
+    echo "This is the function hai"
+    echo "Hai function ompleted"
+}
+
 
 Stat() {
     echo "Number of session opened are $(who | wc -l)"
-    echo "Today date is $date +%F"
+    echo "Today date is $(date +%F)"
+
+    hai
 }
 
 Stat
 
-sleep1
-
-Stat
-
-sleep2
-
-Stat
-
-sleep3

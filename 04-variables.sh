@@ -27,6 +27,8 @@ echo -e "print the value of x : $x"
 # () : paranthesis
 # {} : Flower brackets
 
+#export x=150  :here export is to store the cpu memory on the system, all scripts memory is stored in a heap memory.
+
 #DATA_DIR=robot
 
 #rm -rf /data/$DATA_DIR/  #rm -rf /data   #rm -rf /data/robot

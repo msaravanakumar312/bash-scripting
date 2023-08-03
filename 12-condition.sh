@@ -5,18 +5,22 @@ ACTION=$1
 
 case $ACTION in
 start) 
-    echo "Starting payment service"
+    echo -e "\e[32m Starting payment service \e[0m"
+    exit 0
     ;;
 
 stop)
-    echo "Stopping payment service"
+    echo -e "\e[35m Stopping payment service \e[0m"
+    exit 1
     ;;
 
 restart)
-    echo "Restarting payment service"
+    echo -e "\e[33m Restarting payment service \e[0m"
+    exit 2
     ;;
 *)
-    echo "valid options are start or stop or restart"
-    echo "Example usage : bash scriptname stop"
+    echo -e "\e[34m valid options are start or stop or restart \e[0m]"
+    echo -e "\e[32m Example usage : bash scriptname stop"
+    exit 3
     ;;
 esac

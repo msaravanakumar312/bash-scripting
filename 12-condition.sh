@@ -15,5 +15,8 @@ stop)
 restart)
     echo "Restarting payment service"
     ;;
-
+*)
+    echo "valid options are start or stop or restart"
+    echo "Example usage : bash scriptname stop"
+    ;;
 esac

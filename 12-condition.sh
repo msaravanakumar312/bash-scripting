@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-ACTION=start
+ACTION=$1
 
 case $ACTION in
 start) 

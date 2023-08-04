@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
->>COMMENT
+<<COMMENT
 echo "Cloud devops training"
 echo "shell ecrpting"
 a=100

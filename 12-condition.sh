@@ -30,7 +30,7 @@ restart)
     exit 2
     ;;
 *)
-    echo -e "\e[34m valid options are start or stop or restart \e[0m]"
+    echo -e "\e[34m valid options are start or stop or restart \e[0m"
     echo -e "\e[32m Example usage : bash scriptname stop "
     exit 3
     ;;

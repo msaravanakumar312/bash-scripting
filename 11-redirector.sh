@@ -6,6 +6,12 @@
 #2.output redirector   > or 1  >> (>> append the latest output to the extent content.)
 
 #outputs
-Standard output    > or 1>
-Standard Error     2> or 2>>
-Standard Output and Standard Error  &>  or &>>
+#Standard output    > or 1>
+#Standard Error     2> or 2>>
+#Standard Output and Standard Error  &>  or &>>
+
+
+#ls -ltr  > output.txt    :Redirects output to the output.txt
+#ls -ltr >> output.txt    :Redirects and append the outputs to the output.txt
+#ls -ltr 2> output.txt    :Redirects the errors only to the output.txt
+#ls -ltr &> output.txt    :Redirects the error and output to the output.txt

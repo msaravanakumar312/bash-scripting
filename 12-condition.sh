@@ -1,6 +1,17 @@
 #!/bin/bash
 
 
+#Conditions helps us to excute something if Some_factor is true, if the factor is false then that something won't be excuted.
+
+
+#Sysntex of case
+
+#case $var in
+#   opt1) commands-x ;;
+#   opt2) commands-y ;;
+#esac
+
+
 ACTION=$1
 
 case $ACTION in

@@ -8,9 +8,9 @@ if [ $USER_ID -ne 0 ] ; then
     exit 1
 fi
 
-echo "Configuring frontend"
+echo -e "\e[35m Configuring frontend \e[0m"
 
-if [ $? -eq 0] ; then
+if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31 Failure \e[0m"

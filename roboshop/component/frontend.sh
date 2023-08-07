@@ -8,13 +8,14 @@ if [ $USER_ID -ne 0 ] ; then
     exit 1
 fi
 
+echo "Configuring frontend"
+
 if [ $? -eq 0] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31 Failure \e[0m"
 fi
 
-echo "Configuring frontend"
 
 # yum install nginx -y
 # systemctl enable nginx

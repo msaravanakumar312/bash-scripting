@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sed -e
 
 USER_ID=$(id -u)
 

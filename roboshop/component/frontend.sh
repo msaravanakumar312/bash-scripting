@@ -3,6 +3,9 @@
 set -e
 
 USER_ID=$(id -u)
+COMPONENT=$1
+LOGFILE="/tmp/${COMPONENT}.log "
+
 
 if [ $USER_ID -ne 0 ] ; then
     echo -e "\e[32m script is executed by the root user or with a sudo previllages \e[0m \n \t Example : sudo bash wrapper.sh frontend"
@@ -17,44 +20,40 @@ else
 fi
 }
 
-echo -e "\e[35m Configuring frontend \e[0m"
+echo -e "\e[35m Configuring ${COMPONENT} \e[0m"
 echo -n "Installing frontend :"
-yum install nginx -y   &>> /tmp/frontend.log
+yum install nginx -y   &>> LOGFILE
 stat $?
 
 echo -n "starting nginx :"
-systemctl enable nginx    &>> /tmp/frontend.log
-systemctl start nginx     &>> /tmp/frontend.log
+systemctl enable nginx    &>> LOGFILE
+systemctl start nginx     &>> LOGFILE
 stat $?
 
 
-echo -n "Downloading the frontend component :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+echo -n "Downloading the ${COMPONENT} component :"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
 
 echo -n "Clean up the frontend :"
 cd /usr/share/nginx/html
-rm -rf *      &>> /tmp/frontend.log
+rm -rf *      &>> LOGFILE
 stat $?
 
-echo -n "Extracting the frontend :"
-unzip /tmp/frontend.zip    &>> /tmp/frontend.log
+echo -n "Extracting the ${COMPONENT} :"
+unzip /tmp/${COMPONENT}.zip    &>> LOGFILE
 stat $?
 
 echo -n "Sorting frontend files :"
-mv frontend-main/* .
+mv ${COMPONENT}-main/* .
 mv static/* .
-rm -rf frontend-main README.md     &>> /tmp/frontend.log 
+rm -rf ${COMPONENT}-main README.md     &>> LOGFILE 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-echo -n "Restarting frontend :"
-systemctl daemon-reload      &>> /tmp/frontend.log  
-systemctl restart nginx      &>> /tmp/frontend.log
+echo -n "Restarting ${COMPONENT} :"
+systemctl daemon-reload      &>> LOGFILE  
+systemctl restart nginx      &>> LOGFILE
 stat $?
 
 
-# mv frontend-main/* .
-# mv static/* .
-# rm -rf frontend-main README.md
-# mv localhost.conf /etc/nginx/default.d/roboshop.conf

@@ -10,6 +10,10 @@ fi
 
 echo -e "\e[35m Configuring frontend \e[0m"
 
+
+echo -n "Installing frontend :"
+yum install nginx -y   &>> /tmp/frontend.log
+
 if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
@@ -28,6 +32,3 @@ fi
 # mv static/* .
 # rm -rf frontend-main README.md
 # mv localhost.conf /etc/nginx/default.d/roboshop.conf
-
-echo -n "Installing frontend :"
-yum install nginx -y   &>> /tmp/frontend.log

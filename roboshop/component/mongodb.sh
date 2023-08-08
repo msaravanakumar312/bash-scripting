@@ -31,8 +31,12 @@ echo -n "Enableing the ${COMPONENT} visibility :"
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 stat $?
 
-# systemctl enable mongod
-# systemctl start mongod
+echo -n "Starting the ${COMPONENT} :"
+systemctl enable mongod  &>> LOGFILE
+systemctl start mongod   &>> LOGFILE
+stat $?
+
+
 
 #echo -n "starting nginx :"
 #systemctl enable nginx    &>> LOGFILE

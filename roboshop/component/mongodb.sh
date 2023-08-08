@@ -1,13 +1,11 @@
 #!/bin/bash
 
-set -e
-
 USER_ID=$(id -u)
 COMPONENT=mongodb
 LOGFILE="/tmp/${COMPONENT}.log "
 
 
-if [ $USER_ID -ne 0 ] ; then
+if [ $1 -ne 0 ] ; then
     echo -e "\e[32m script is executed by the root user or with a sudo previllages \e[0m \n \t Example : sudo bash wrapper.sh frontend"
     exit 1
 fi

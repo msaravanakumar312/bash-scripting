@@ -33,7 +33,7 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf     &>> ${LOGFILE}
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
 stat $?
 
-echo -n "starting the ${COMPONENT} service :"
+echo -n "starting the ${COMPONENT} :"
 systemctl daemon-reload               &>> ${LOGFILE}
 systemctl enable redis       &>> ${LOGFILE}
 systemctl start redis         &>> ${LOGFILE}

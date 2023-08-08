@@ -55,8 +55,8 @@ npm install    &>> ${LOGFILE}
 stat $?
 
 echo -n "Configuring ${COMPONENT} system file :"
-sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
-sed -i -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
+sed -ie 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
+sed -ie 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 

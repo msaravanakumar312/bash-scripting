@@ -32,33 +32,33 @@ stat $?
 # systemctl enable mongod
 # systemctl start mongod
 
-echo -n "starting nginx :"
-systemctl enable nginx    &>> LOGFILE
-systemctl start nginx     &>> LOGFILE
-stat $?
+#echo -n "starting nginx :"
+#systemctl enable nginx    &>> LOGFILE
+#systemctl start nginx     &>> LOGFILE
+#stat $?
 
 
-echo -n "Downloading the ${COMPONENT} component :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
+#echo -n "Downloading the ${COMPONENT} component :"
+#curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+#tat $?
 
-echo -n "Clean up the frontend :"
-cd /usr/share/nginx/html
-rm -rf *      &>> LOGFILE
-stat $?
+#echo -n "Clean up the frontend :"
+#cd /usr/share/nginx/html
+#rm -rf *      &>> LOGFILE
+#stat $?
 
-echo -n "Extracting the ${COMPONENT} :"
-unzip /tmp/${COMPONENT}.zip    &>> LOGFILE
-mv ${COMPONENT}-main/* .
-mv static/* .
-rm -rf ${COMPONENT}-main README.md     &>> LOGFILE 
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
-stat $?
+#echo -n "Extracting the ${COMPONENT} :"
+#unzip /tmp/${COMPONENT}.zip    &>> LOGFILE
+#mv ${COMPONENT}-main/* .
+#mv static/* .
+#rm -rf ${COMPONENT}-main README.md     &>> LOGFILE 
+#mv localhost.conf /etc/nginx/default.d/roboshop.conf
+#stat $?
 
-echo -n "Restarting ${COMPONENT} :"
-systemctl daemon-reload      &>> LOGFILE  
-systemctl restart nginx      &>> LOGFILE
-stat $?
+#echo -n "Restarting ${COMPONENT} :"
+#systemctl daemon-reload      &>> LOGFILE  
+#systemctl restart nginx      &>> LOGFILE
+#stat $?
 
 
 

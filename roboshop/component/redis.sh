@@ -33,10 +33,10 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf  &>> ${LOGFILE}
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
 stat $?
 
-echo -n "Restarting the ${COMPONENT} :"
+echo -n "Starting the ${COMPONENT} :"
 systemctl daemon-reload        &>> ${LOGFILE}
 systemctl enable ${COMPONENT}  &>> ${LOGFILE}
-systemctl restart ${COMPONENT}   &>> ${LOGFILE}
+systemctl start ${COMPONENT}   &>> ${LOGFILE}
 stat $?
 
 

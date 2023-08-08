@@ -55,15 +55,14 @@ npm install    &>> ${LOGFILE}
 stat $?
 
 echo -n "Configuring ${COMPONENT} system file :"
-sed -ie 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
-sed -ie 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
+sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service &>> ${LOGFILE}
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
 echo -n "Starting the ${COMPONENT} service :"
-systemctl daemon-reload               &>> ${LOGFILE}
-systemctl start ${COMPONENT}          &>> ${LOGFILE}
+systemctl daemon-reload               &>> ${LOGFILE}         
 systemctl enable ${COMPONENT}         &>> ${LOGFILE}
+systemctl start ${COMPONENT}          &>> ${LOGFILE}
 stat $?
 
 echo -e "\n \e[35m ${COMPONENT} Installing is completed \e[0m \n"

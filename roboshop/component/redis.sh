@@ -21,7 +21,7 @@ fi
 echo -e "\e[35m Configuring ${COMPONENT} redis \e[0m"
 
 echo -n "Configuring ${COMPONENT} repo :"
-curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LOGFILE}
+curl -s -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing the ${COMPONENT} redis :"

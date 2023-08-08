@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bash component/redis.sh
+bash component/$1.sh

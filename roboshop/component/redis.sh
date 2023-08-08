@@ -36,9 +36,9 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFI
 stat $?
 
 echo -n "starting the ${COMPONENT} service :"
-systemctl daemon-reload  ${COMPONENT} &>> ${LOGFILE}
+systemctl daemon-reload               &>> ${LOGFILE}
 systemctl enable ${COMPONENT}         &>> ${LOGFILE}
-systemctl start ${COMPONENT}        &>> ${LOGFILE}
+systemctl start ${COMPONENT}          &>> ${LOGFILE}
 stat $?
 
 

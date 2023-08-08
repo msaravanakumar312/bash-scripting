@@ -23,7 +23,7 @@ echo -n "Configuring ${COMPONENT} repo :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
 stat $?
 
-echo -n "Installing nodejs :"
+echo -n "Installing the {COMPONENT} :"
 yum install -y nodejs    &>> ${LOGFILE}
 stat $?
 

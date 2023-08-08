@@ -20,7 +20,12 @@ fi
 
 echo -e "\e[35m Configuring ${COMPONENT} redis \e[0m"
 
+echo -n "Configuring ${COMPONENT} repo :"
+curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/${COMPONENT}.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LoGFILE}
+stat$?
 
+
+# yum install redis-6.2.11 -y
 
 
 

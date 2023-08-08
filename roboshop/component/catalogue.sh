@@ -29,9 +29,25 @@ stat $?
 
 id ${APPUSER}    &>> ${LOGFILE}
 if [ $? -ne 0 ] ; then
-echo -n "Creating Appuser account :"
-useradd roboshop
+    echo -n "Creating Appuser account :"
+    useradd roboshop
+    stat $?
+fi
+
+echo -n "Downloading the ${COMPONENT} :"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
 stat $?
 
-fi
+echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
+cd /home/${APPUSER}
+rm -rf ${COMPONENT}             &>> ${LOGFILE}
+unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+stat $?
+
+
+
+
+mv catalogue-main catalogue
+cd /home/roboshop/catalogue
+
 

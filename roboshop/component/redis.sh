@@ -18,26 +18,8 @@ else
 fi
 }
 
-echo -e "\e[35m Configuring ${COMPONENT} \e[0m"
+echo -e "\e[35m Configuring ${COMPONENT} redis \e[0m"
 
-echo -n "Downloading the ${COMPONENT} repo :"
-curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LOGFILE}
-stat $?
-
-echo -n "Installing the ${COMPONENT} redis :"
-yum install redis-6.2.12 -y    &>> ${LOGFILE}
-stat $?
-
-echo -n "Enableing the ${COMPONENT} visibility :" 
-sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf     &>> ${LOGFILE}
-sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
-stat $?
-
-echo -n "Starting ${COMPONENT} :"
-systemctl daemon-reload      &>> LOGFILE  
-systemctl enable redis      &>> LOGFILE
-systemctl start redis      &>> LOGFILE
-stat $?
 
 
 

@@ -32,23 +32,23 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 stat $?
 
 echo -n "Starting the ${COMPONENT} :"
-systemctl enable mongod  &>> LOGFILE
-systemctl start mongod   &>> LOGFILE
+systemctl enable mongod  &>> ${LOGFILE}
+systemctl start mongod   &>> ${LOGFILE}
 stat $?
 
 echo -n "Downloading the ${COMPONENT} schema :"
 curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
 stat $?
 
-echo -n "Extracing the ${COMPONENT} schema :"
+echo -n "Extracting the ${COMPONENT} schema :"
 cd /tmp
-unzip mongodb.zip      &>> LOGFILE
+unzip ${COMPONENT}.zip      &>> ${LOGFILE}
 stat $?
 
 echo -n "Injecting the ${COMPONENT} schema :"
-cd mongodb-main
-mongo < catalogue.js   &>> LOGFILE
-mongo < users.js       &>> LOGFILE
+cd ${COMPONENT}-main
+mongo < catalogue.js   &>> ${LOGFILE}
+mongo < users.js       &>> ${LOGFILE}
 stat $?
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER_ID=$(id -u)
-COMPONENT=nodejs
+COMPONENT=catalogue
 LOGFILE="/tmp/${COMPONENT}.log "
 APPUSER=roboshop
 
@@ -40,9 +40,8 @@ stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
+rm -rf ${COMPONENT}      &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
-mv ${COMPONENT}-main ${APPUSER}
-cd /home/${APPUSER}/${COMPONENT}
 stat $?
 
 echo -n "Changing the ownership :"

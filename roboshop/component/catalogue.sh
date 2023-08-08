@@ -20,7 +20,7 @@ fi
 
 echo -e "\e[35m Configuring ${COMPONENT}  \e[0m"
 echo -n "Configuring ${COMPONENT} repo :"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing nodejs :"
@@ -29,5 +29,5 @@ stat $?
 
 echo -n "Creating Appuser account :"
 useradd roboshop
-stst $?
+stat $?
 

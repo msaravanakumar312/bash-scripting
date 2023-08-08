@@ -24,11 +24,11 @@ echo -n "Configuring ${COMPONENT} repo :"
 curl -s -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LOGFILE}
 stat $?
 
-echo -n "Installing the ${COMPONENT} redis :"
+echo -n "Installing the ${COMPONENT} :"
 yum install redis-6.2.12 -y  &>> ${LOGFILE}
 stat $?
 
-echo -n "Enableing the ${COMPONENT} redis :"
+echo -n "Enableing the ${COMPONENT} :"
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf  &>> ${LOGFILE}
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
 stat $?

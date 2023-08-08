@@ -51,7 +51,7 @@ stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts :"
 cd /home/${APPUSER}/${COMPONENT}/
-npm install
+npm install    &>> ${LOGFILE}
 stat $?
 
 echo -n "Configuring ${COMPONENT} system file :"

@@ -23,7 +23,7 @@ echo -n "Configuring ${COMPONENT} repo :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
 stat $?
 
-echo -n "Installing the {COMPONENT} :"
+echo -n "Installing the nodejs :"
 yum install -y nodejs    &>> ${LOGFILE}
 stat $?
 
@@ -40,12 +40,12 @@ stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
-rm -rf ${COMPONENT}             &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+mv ${COMPONENT}-main ${APPUSER}
+cd /home/${APPUSER}/${COMPONENT}
 stat $?
 
 echo -n "Changing the ownership :"
-mv ${COMPONENT}-main ${COMPONENT}
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
 

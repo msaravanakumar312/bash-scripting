@@ -28,7 +28,7 @@ yum install -y mongodb-org    &>> ${LOGFILE}
 stat $?
 
 echo -n "Enableing the ${COMPONENT} visibility :"
-sed -ie 's/127.0.0.1/0.0.0.0/g' mongodb.conf
+sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongodb.conf
 stat $?
 
 # systemctl enable mongod

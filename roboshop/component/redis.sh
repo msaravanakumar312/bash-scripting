@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 USER_ID=$(id -u)
 COMPONENT=redis
 LOGFILE="/tmp/${COMPONENT}.log"
@@ -37,8 +35,8 @@ stat $?
 
 echo -n "starting the ${COMPONENT} service :"
 systemctl daemon-reload               &>> ${LOGFILE}
-systemctl enable ${COMPONENT}         &>> ${LOGFILE}
-systemctl start ${COMPONENT}          &>> ${LOGFILE}
+systemctl enable redis       &>> ${LOGFILE}
+systemctl start redis         &>> ${LOGFILE}
 stat $?
 
 

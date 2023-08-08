@@ -42,9 +42,9 @@ sed -ie 's/27.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> LOGFILE
 stat $?
 
 
-echo -n "starting the ${COMPONENT} service :"
+echo -n "starting the ${COMPONENT} :"
 systemctl enable ${COMPONENT}    &>> LOGFILE
-systemctl start ${COMPONENT}     &>> LOGFILE
+systemctl restart ${COMPONENT}     &>> LOGFILE
 stat $?
 
 

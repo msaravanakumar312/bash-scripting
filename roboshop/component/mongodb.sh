@@ -45,11 +45,11 @@ cd /tmp
 unzip -o ${COMPONENT}.zip   &>> ${LOGFILE}
 stat $?
 
-#echo -n "Injecting the ${COMPONENT} schema :"
-#cd ${COMPONENT}-main
-#mongo < catalogue.js   &>> ${LOGFILE}
-#mongo < users.js       &>> ${LOGFILE}
-#stat $?
+echo -n "Injecting the ${COMPONENT} schema :"
+cd ${COMPONENT}-main
+mongo < catalogue.js   &>> ${LOGFILE}
+mongo < users.js       &>> ${LOGFILE}
+stat $?
 
 
 

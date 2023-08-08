@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER_ID=$(id -u)
-COMPONENT=nginx
+COMPONENT=catalogue
 LOGFILE="/tmp/${COMPONENT}.log "
 APPUSER=roboshop
 
@@ -54,11 +54,11 @@ sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONEN
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
-echo -n "Starting the ${COMPONENT} service :"
-systemctl daemon-reload        ${COMPONENT}
-systemctl start ${COMPONENT}   ${COMPONENT}
-systemctl enable ${COMPONENT}  ${COMPONENT}
-stat $?
+#echo -n "Starting the ${COMPONENT} service :"
+#systemctl daemon-reload        &>> ${LOGFILE}
+#systemctl start ${COMPONENT}          &>> ${LOGFILE}
+#systemctl enable ${COMPONENT}         &>> ${LOGFILE}
+#stat $?
 
 
 

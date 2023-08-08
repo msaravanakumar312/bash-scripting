@@ -13,7 +13,7 @@ if [ $USER_ID -ne 0 ] ; then
 fi
 
 stat () {
-if [ $1 -eq 0 ] ; then
+if [ $? -eq 0 ] ; then
     echo -e "\e[32m Success \e[0m"
 else
     echo -e "\e[31 Failure \e[0m"
@@ -23,28 +23,29 @@ fi
 echo -e "\e[35m Configuring ${COMPONENT} \e[0m"
 
 #echo -n "starting nginx :"
-#systemctl enable nginx    &>> LOGFILE
+#systemctl enable nginx    &>> ${LOGFILE}
 #systemctl start nginx     &>> LOGFILE
 #stat $?
 
 
 echo -n "Downloading the ${COMPONENT} component :"
-curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> LOGFILE
+curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing the ${COMPONENT} redis :"
-yum install redis-6.2.12 -y    &>> LOGFILE
+yum install redis-6.2.12 -y    &>> ${LOGFILE}
 stat $?
 
 echo -n "Enabeling the ${COMPONENT} visibility :" 
-sed -ie 's/27.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf     &>> LOGFILE
-sed -ie 's/27.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> LOGFILE
+sed -ie 's/27.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf     &>> ${LOGFILE}
+sed -ie 's/27.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
 stat $?
 
 
 echo -n "starting the ${COMPONENT} :"
-systemctl enable ${COMPONENT}    &>> LOGFILE
-systemctl restart ${COMPONENT}     &>> LOGFILE
+systemctl daemon-reload  ${COMPONENT} &>> ${LOGFILE}
+systemctl enable ${COMPONENT}         &>> ${LOGFILE}
+systemctl restart ${COMPONENT}        &>> ${LOGFILE}
 stat $?
 
 

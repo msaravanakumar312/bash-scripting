@@ -41,13 +41,26 @@ stat $?
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}      &>> ${LOGFILE}
-unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+unzip -o /tmp/${COMPONENT}.zip  ${COMPONENT}
 stat $?
 
 echo -n "Changing the ownership :"
 mv ${COMPONENT}-main ${COMPONENT}
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
+
+echo -n "Configuring ${COMPONENT} system file :"
+sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service 
+mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
+
+echo -n "Starting the ${COMPONENT} service :"
+systemctl daemon-reload        ${COMPONENT}
+systemctl start ${COMPONENT}   ${COMPONENT}
+systemctl enable ${COMPONENT}  ${COMPONENT}
+stat $?
+
+
 
 
 

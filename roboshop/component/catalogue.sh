@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER_ID=$(id -u)
-COMPONENT=catalogue
+COMPONENT=nginx
 LOGFILE="/tmp/${COMPONENT}.log "
 APPUSER=roboshop
 

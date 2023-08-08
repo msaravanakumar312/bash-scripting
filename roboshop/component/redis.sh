@@ -29,8 +29,8 @@ yum install redis-6.2.12 -y  &>> ${LOGFILE}
 stat $?
 
 echo -n "Enableing the ${COMPONENT} redis :"
-sed -ie 's/127.0.0.0/0.0.0.0/g' /etc/${COMPONENT}.conf  &>> ${LOGFILE}
-sed -ie 's/127.0.0.0/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
+sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf  &>> ${LOGFILE}
+sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf  &>> ${LOGFILE}
 stat $?
 
 

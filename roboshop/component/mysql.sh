@@ -48,7 +48,7 @@ echo -n "Extracting the ${COMPONENT} schema :"
     stat $?
 
 echo -n "Injecting the schema :" 
-    cd ${COMPONENT}-main    
+    cd /tmp/${COMPONENT}-main    
     mysql -u root -pRoboShop@1 <shipping.sql    &>> ${LOGFILE}
     stat $?
 

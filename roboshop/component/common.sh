@@ -10,6 +10,20 @@ USER_ID=$(id -u)
         exit 1
     fi
 
+# Declaring a NODEJS Funtions:
+NODEJS () {
+    echo -e "\e[35m Configuring ${COMPONENT}  \e[0m"
+    echo -n "Configuring ${COMPONENT} repo :"
+    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
+    stat $?
+
+    echo -n "Installing the nodejs :"
+    yum install -y nodejs    &>> ${LOGFILE}
+    stat $?
+
+}
+
+
 stat () {
     if [ $1 -eq 0 ] ; then
         echo -e "\e[32m Success \e[0m"
@@ -18,6 +32,15 @@ stat () {
     fi
     }
 
+# Funtion to create a user account:
+CREAT_USER () {
+    id ${APPUSER}    &>> ${LOGFILE}
+    if [ $? -ne 0 ] ; then
+    echo -n "Creating Appuser account :"
+    useradd roboshop
+    stat $?
+    fi
+}
 
 DOWNLOAD_AND_-EXTRACT () {
     echo -n "Downloading the ${COMPONENT} :"
@@ -36,15 +59,6 @@ DOWNLOAD_AND_-EXTRACT () {
     stat $?
 }
 
-# Funtion to create a user account:
-CREAT_USER () {
-    id ${APPUSER}    &>> ${LOGFILE}
-    if [ $? -ne 0 ] ; then
-    echo -n "Creating Appuser account :"
-    useradd roboshop
-    stat $?
-    fi
-}
 CONFIG_SVC () {
     echo -n "Configuring ${COMPONENT} system file :"
     sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service 
@@ -58,18 +72,6 @@ CONFIG_SVC () {
     stat $?
 }
 
-# Declaring a NODEJS Funtions:
-NODEJS () {
-    echo -e "\e[35m Configuring ${COMPONENT}  \e[0m"
-    echo -n "Configuring ${COMPONENT} repo :"
-    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
-    stat $?
-
-    echo -n "Installing the nodejs :"
-    yum install -y nodejs    &>> ${LOGFILE}
-    stat $?
-
-}
 
 
 

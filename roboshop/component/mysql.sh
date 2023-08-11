@@ -21,7 +21,7 @@ stat $?
 
 echo -n "Extracting the mysql default root password :"
 DEFAULT_ROOT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk -F " " '{print $NF}')
-stst $?
+stat $?
 
 echo -n "Performing default password reset of root account :"
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql - --connect-expired-password -uroot -p$DEFAULT_ROOT_PASSWORD  &>> ${LOGFILE}

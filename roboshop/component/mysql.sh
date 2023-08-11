@@ -20,11 +20,11 @@ systemctl start mysqld      &>> ${LOGFILE}
 stat $?
 
 echo -n "Extracting the mysql default root password :"
-sudo grep 'temporary password' /var/log/mysqld.log | awk  '{print $NF}'
+DEFAULT_ROOT_PASSWORD=${grep 'temporary password' /var/log/mysqld.log | awk  '{print $NF}'}
 stst $?
 
 echo -n "Performing default password reset of root account :"
-echo ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1' | mysql - --connect-expired-password -uroot -p$DEFAUT_ROOT_PASSWORD  &>> ${LOGFILE}
+echo ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1' | mysql - --connect-expired-password -uroot -p$DEFAULT_ROOT_PASSWORD  &>> ${LOGFILE}
 stat $?
 
 

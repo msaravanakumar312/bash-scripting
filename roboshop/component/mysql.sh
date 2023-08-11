@@ -27,7 +27,7 @@ stat $?
 #We need ensure that runs only one.
 echo "show databases;" | mysql -uroot -pRoboshop@1  &>> ${LOGFILE}
 if [ $? -ne 0 ]; then
-echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql  --connect-expired-password -uroot -pDEFAULT_ROOT_PASSWORD &>>  ${LOGFILE}
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql  --connect-expired-password -uroot -p$DEFAULT_ROOT_PASSWORD &>>  ${LOGFILE}
 stat $?
 fi
 

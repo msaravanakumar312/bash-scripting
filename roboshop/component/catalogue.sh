@@ -3,7 +3,7 @@
 COMPONENT=catalogue
 
 #This is how we imporrt funtions that are declared in a defferent file using soure
-source components/common.sh
+source component/common.sh
 NODEJS       #calling nodejs funtions
 
 

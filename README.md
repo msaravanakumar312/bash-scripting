@@ -79,3 +79,23 @@
 #1) for loop : when you know something to be excuted n number of times, we use for loops
 
 #2)while loop: when you don't know something to be excuted n number times, we use while loop.
+
+
+How to keep our roboshop project automation code DRY? How can we eliminate the repititive code:
+
+1)Best possible approch is define funtions and call them whenever you needed.
+2)The caviet here is , by default if you define a function in x.sh, you only can call that funtion with in that file only.
+
+3)To overcome the above challenge, what we can do is, we can define funtion in common.sh file and call all the needed funtions from the common file.
+
+a)For Nodejs components, lets create a funtion for nodejs and declare all the action in this and call it when you'e using this nodejs components.
+
+b)For python components, lets create a funtion for python and declare all the action in this and call it when you'e using this python components.
+
+c)For java components, lets create a funtion for java and declare all the action in this and call it when you'e using this java components.
+
+d)For Angularjs components, lets create a funtion for Angularjs and declare all the action in this and call it when you'e using this Angularjs components.
+
+
+
+

@@ -44,7 +44,7 @@ echo -n "Downloading the ${COMPONENT} schema :"
 
 echo -n "Extracting the ${COMPONENT} schema :"
     cd /tmp
-    unzip -o ${COMPONENT}.zip  &>> ${LOGFILE}
+    unzip ${COMPONENT}.zip  &>> ${LOGFILE}
     stat $?
 
 echo -n "Injecting the schema :" 

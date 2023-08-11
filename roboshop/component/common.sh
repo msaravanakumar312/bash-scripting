@@ -60,7 +60,7 @@ CREAT_USER () {
 
 # Declaring a NODEJS Funtions:
 NODEJS () {
-    echo -e "\e[35m Configuring ${COMPONENT}  \e[0m"
+    echo -e "\e[35m Configuring ${COMPONENT} .....! \e[0m"
     echo -n "Configuring ${COMPONENT} repo :"
     curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
     stat $?
@@ -68,7 +68,6 @@ NODEJS () {
     echo -n "Installing the nodejs :"
     yum install -y nodejs    &>> ${LOGFILE}
     stat $?
-}
 
 CREAT_USER              #calls CREATE_USER funtion that create user account
 
@@ -78,6 +77,8 @@ DOWNLOAD_AND_-EXTRACT   #Downloads and extract the components.
     cd /home/${APPUSER}/${COMPONENT}/
     npm install    &>> ${LOGFILE}
     stat $?
+
+}
 
 
 

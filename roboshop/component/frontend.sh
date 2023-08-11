@@ -20,7 +20,7 @@ else
 fi
 }
 
-echo -e "\e[35m Configuring ${COMPONENT} \e[0m"
+echo -e "\e[35m Configuring ${COMPONENT} \e[0m
 echo -n "Installing frontend :"
 yum install nginx -y   &>> LOGFILE
 stat $?

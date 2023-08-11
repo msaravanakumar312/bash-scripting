@@ -44,12 +44,12 @@ stat $?
 
 echo -n "Extracting the ${COMPONENT} schema :"
 cd /tmp/
-unzip -o /tmp/${COMPONENT}.zip
+unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
-echo -n "Injecting the ${COMPONENT} schema :"
-cd ${COMPONENT}-main &>> ${LOGFILE}
-mysql -u root -pRoboShop@1 <shipping.sql &>> ${LOGFILE}
+echo -n "Injecting the ${COMPONENT} schema :" 
+cd ${COMPONENT}-main    &>> ${LOGFILE}
+mysql -uroot -pRoboShop@1 <shipping.sql &>> ${LOGFILE}
 stat $?
 
 echo -e "\n \e[32m ${COMPONENT} Installation Is Completed \e[0m \n"

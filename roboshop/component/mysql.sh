@@ -44,10 +44,10 @@ echo -n "Downloading the ${COMPONENT} schema :"
 
 echo -n "Extracting the ${COMPONENT} schema :"
     cd /tmp
-    unzip -o ${COMPONENT}.zip  &>> ${LOGFILE}
+    unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
     stat $?
 
-echo -n "Injecting the schema :" 
+echo -n "Injecting the ${COMPONENT} schema :" 
     cd ${COMPONENT}-main    
     mysql -u root -pRoboShop@1 <shipping.sql    &>> ${LOGFILE}
     stat $?

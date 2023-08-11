@@ -26,11 +26,10 @@ stat $?
 #This sholud happen only once and that too for the first time,when it runs for the second time,jobs failure.
 #We need ensure that runs only one.
 echo "show databases;" | mysql -uroot -pRoboshop@1  &>> ${LOGFILE}
-#if [ $? -ne 0 ]; then
-#echo -n "Performing default password reset of root account :"
-#echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql  --connect-expired-password -uroot -pDEFAULT_ROOT_PASSWORD &>>  ${LOGFILE}
-#stat $?
-#fi
+if [ $? -ne 0 ]; then
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql  --connect-expired-password -uroot -pDEFAULT_ROOT_PASSWORD &>>  ${LOGFILE}
+stat $?
+fi
 
 
 

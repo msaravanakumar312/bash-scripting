@@ -49,7 +49,7 @@ fi
 
     echo -n "Injecting the schema :" 
     cd ${COMPONENT}-main    
-    mysql -u root -pRoboShop@1 <shipping.sql    &>> ${LOGFILE}
+    mysql -u root -pRoboshop@1 <shipping.sql    &>> ${LOGFILE}
     stat $?
 
     echo -e "\n \e[32m ${COMPONENT} Installation Is Completed \e[0m \n"

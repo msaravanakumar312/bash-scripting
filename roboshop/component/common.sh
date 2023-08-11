@@ -10,20 +10,6 @@ USER_ID=$(id -u)
         exit 1
     fi
 
-# Declaring a NODEJS Funtions:
-NODEJS () {
-    echo -e "\e[35m Configuring ${COMPONENT}  \e[0m"
-    echo -n "Configuring ${COMPONENT} repo :"
-    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
-    stat $?
-
-    echo -n "Installing the nodejs :"
-    yum install -y nodejs    &>> ${LOGFILE}
-    stat $?
-
-}
-
-
 stat () {
     if [ $1 -eq 0 ] ; then
         echo -e "\e[32m Success \e[0m"
@@ -32,14 +18,17 @@ stat () {
     fi
     }
 
-# Funtion to create a user account:
-CREAT_USER () {
-    id ${APPUSER}    &>> ${LOGFILE}
-    if [ $? -ne 0 ] ; then
-    echo -n "Creating Appuser account :"
-    useradd roboshop
+CONFIG_SVC () {
+    echo -n "Configuring ${COMPONENT} system file :"
+    sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service 
+    mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
     stat $?
-    fi
+
+    echo -n "Starting the ${COMPONENT} service :"
+    systemctl daemon-reload               &>> ${LOGFILE}
+    systemctl start ${COMPONENT}          &>> ${LOGFILE}
+    systemctl enable ${COMPONENT}         &>> ${LOGFILE}
+    stat $?
 }
 
 DOWNLOAD_AND_-EXTRACT () {
@@ -59,21 +48,27 @@ DOWNLOAD_AND_-EXTRACT () {
     stat $?
 }
 
-CONFIG_SVC () {
-    echo -n "Configuring ${COMPONENT} system file :"
-    sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service 
-    mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+# Funtion to create a user account:
+CREAT_USER () {
+    id ${APPUSER}    &>> ${LOGFILE}
+    if [ $? -ne 0 ] ; then
+    echo -n "Creating Appuser account :"
+    useradd roboshop
     stat $?
-
-    echo -n "Starting the ${COMPONENT} service :"
-    systemctl daemon-reload               &>> ${LOGFILE}
-    systemctl start ${COMPONENT}          &>> ${LOGFILE}
-    systemctl enable ${COMPONENT}         &>> ${LOGFILE}
-    stat $?
+    fi
 }
 
+# Declaring a NODEJS Funtions:
+NODEJS () {
+    echo -e "\e[35m Configuring ${COMPONENT}  \e[0m"
+    echo -n "Configuring ${COMPONENT} repo :"
+    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>> ${LOGFILE}
+    stat $?
 
-
+    echo -n "Installing the nodejs :"
+    yum install -y nodejs    &>> ${LOGFILE}
+    stat $?
+}
 
 CREAT_USER              #calls CREATE_USER funtion that create user account
 

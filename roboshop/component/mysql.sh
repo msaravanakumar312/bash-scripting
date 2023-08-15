@@ -1,8 +1,9 @@
 #!/bin/bash
 
-USER_ID=$(id -u)
 COMPONENT=mysql
-LOGFILE="/tmp/${COMPONENT}.log "
+
+source component/common.sh
+
 
 
     echo -e "\e[35m Configuring ${COMPONENT}.....! \e[0m"

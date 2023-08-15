@@ -44,11 +44,11 @@ fi
 
     echo -n "Extracting the ${COMPONENT} schema :"
     cd /tmp
-    unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+    unzip ${COMPONENT}.zip  &>> ${LOGFILE}
     stat $?
 
     echo -n "Injecting the schema :" 
-    cd ${COMPONENT}-main    
+    cd ${COMPONENT} -main    
     mysql -u root -pRoboshop@1 <shipping.sql    &>> ${LOGFILE}
     stat $?
 

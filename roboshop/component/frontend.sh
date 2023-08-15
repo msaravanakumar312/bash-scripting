@@ -48,5 +48,9 @@ rm -rf ${COMPONENT}-main README.md     &>> LOGFILE
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
+echo -n "Restarting ${COMPONENT} :"
+systemctl daemon-reload      &>> LOGFILE  
+systemctl restart nginx      &>> LOGFILE
+stat $?
 
 

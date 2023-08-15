@@ -48,7 +48,7 @@ fi
     stat $?
 
     echo -n "Injecting the schema :" 
-    cd ${COMPONENT}-main    
+    cd /tmp/${COMPONENT}-main    
     mysql -u root -pRoboshop@1 <shipping.sql    &>> ${LOGFILE}
     stat $?
 

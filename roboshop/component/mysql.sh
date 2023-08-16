@@ -25,17 +25,17 @@ source component/common.sh
     DEFAULT_ROOT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk -F " " '{print $NF}')
     stat $?
 
-echo "show databases;" | mysql -uroot -pRoboshop@1  &>> ${LOGFILE}
+echo "show databases;" | mysql -u root -pRoboshop@1  &>> ${LOGFILE}
 if [ $? -ne 0 ]; then
     echo -n "Performing default password reset of root account:"
-    echo -n "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASSWORD &>> ${LOGFILE}
+    echo -n "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql --connect-expired-password -u root -p$DEFAULT_ROOT_PASSWORD &>> ${LOGFILE}
     stat $?
 fi
 
-echo "show plugins;" | mysql -uroot -pRoboshop@1 | grep validate_password  &>> ${LOGFILE}
+echo "show plugins;" | mysql -u root -pRoboshop@1 | grep validate_password  &>> ${LOGFILE}
 if [ $? -ne 0 ]; then 
     echo -n "Uninstalling Password-validate plugin :"
-    echo "uninstall plugin validate_password" | mysql -uroot -pRoboshop@1  &>> ${LOGFILE}
+    echo "uninstall plugin validate_password" | mysql -u root -pRoboshop@1  &>> ${LOGFILE}
     stat $?
 fi
 

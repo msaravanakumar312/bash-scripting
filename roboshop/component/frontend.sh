@@ -18,6 +18,12 @@ else
 fi
 }
 
+echo -n "Updating the Backend Components in the reverse proxy file :"
+ 
+for component in catalogue user cart shipping ; do 
+    sed -i -e "/${COMPONENT}/s/localhost/${COMPONENT}.roboshop.internal/* /etc/nginx/default.d/roboshop.conf
+done
+
 echo -e "\e[35m Configuring ${COMPONENT} \e[0m"
 echo -n "Installing frontend :"
 yum install nginx -y   &>> LOGFILE

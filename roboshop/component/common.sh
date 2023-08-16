@@ -108,6 +108,32 @@ CONFIG_SVC
 
 }
 
+PYTHON() {
+    echo -e "\e[32m Configuring ${COMPONENT}.......! \e[0m"
+
+    echo -n "Installing  python:"
+    yum install python36 gcc python3-devel -y &>> ${LOGFILE}
+    stat $?
+
+    CREAT_USER              #calls CREATE_USER funtion that create user account
+
+    DOWNLOAD_AND_EXTRACT  #Downloads and extract the components
+
+    echo -n "Generating the ${COMPONENT} artifacts :"
+    cd /home/${APPUSER}/${COMPONENT}/ 
+    pip3 install -r requirements.txt &>> ${LOGFILE}
+    stat $?
+
+    USER_ID=$(id -u roboshop)
+    Group_ID=$(id -g roboshop)
+
+    echo -n "Updating the uid and gid in the ${COMPONENT}.ini file :"
+    sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid c gid=${GROUPID}" /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini   &>> ${LOGFILE}
+    stat $?
+
+CONFIG_SVC
+}
+
 
 
 

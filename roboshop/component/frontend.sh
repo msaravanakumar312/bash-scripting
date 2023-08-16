@@ -54,5 +54,5 @@ stat $?
 
 echo -n "Restarting ${COMPONENT} :"
 systemctl daemon-reload      &>> LOGFILE  
-systemctl restart nginx      &>> LOGFILE
+systemctl restart ${COMPONENT}     &>> LOGFILE
 stat $?

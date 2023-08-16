@@ -21,17 +21,17 @@ fi
 echo -n "Updating the Backend Components in the reverse proxy file :"
  
 for component in catalogue user cart shipping payment ; do 
-    sed -i -e "/${COMPONENT}/s/localhost/${COMPONENT}.roboshop.internal/* /etc/nginx/default.d/roboshop.conf
+    sed -i -e "/${COMPONENT}/s/localhost/${COMPONENT}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
 done
 
 echo -e "\e[35m Configuring ${COMPONENT} \e[0m"
 echo -n "Installing frontend :"
-yum install nginx -y   &>> LOGFILE
+yum install nginx -y   &>> ${LOGFILE}
 stat $?
 
 echo -n "starting nginx :"
-systemctl enable nginx    &>> LOGFILE
-systemctl start nginx     &>> LOGFILE
+systemctl enable nginx    &>> ${LOGFILE}
+systemctl start nginx     &>> ${LOGFILE}
 stat $?
 
 
@@ -41,18 +41,18 @@ stat $?
 
 echo -n "Clean up the frontend :"
 cd /usr/share/nginx/html
-rm -rf *      &>> LOGFILE
+rm -rf *      &>> ${LOGFILE}
 stat $?
 
 echo -n "Extracting the ${COMPONENT} :"
-unzip /tmp/${COMPONENT}.zip    &>> LOGFILE
+unzip /tmp/${COMPONENT}.zip    &>> ${LOGFILE}
 mv ${COMPONENT}-main/* .
 mv static/* .
-rm -rf ${COMPONENT}-main README.md     &>> LOGFILE 
+rm -rf ${COMPONENT}-main README.md     &>> ${LOGFILE} 
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "Restarting ${COMPONENT} :"
-systemctl daemon-reload      &>> LOGFILE  
-systemctl restart ${COMPONENT}     &>> LOGFILE
+systemctl daemon-reload           &>> ${LOGFILE} 
+systemctl restart nginx     &>> ${LOGFILE}
 stat $?

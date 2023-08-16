@@ -28,7 +28,6 @@ source component/common.sh
 echo "show databases;" | mysql -uroot -pRoboshop@1  &>> ${LOGFILE}
 if [ $? -ne 0 ]; then
     echo -n "Performing default password reset of root account:"
-    echo -n "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Roboshop@1'";
     echo -n "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASSWORD &>> ${LOGFILE}
     stat $?
 fi

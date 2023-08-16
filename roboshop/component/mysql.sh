@@ -49,6 +49,6 @@ echo -n "Downloading the ${COMPONENT} schema :"
     stat $?
 
     echo -n "Injecting the schema :" 
-    cd ${COMPONENT}-main    
+    cd /${COMPONENT}-main    
     mysql -u root -pRoboshop@1 <shipping.sql    &>> ${LOGFILE}
     stat $?

@@ -15,11 +15,10 @@ HOSTEDZONEID="Z0475481NBO60TX4OZ6V"
 echo -e "*******Creating \e[35m ${COMPONENT} \e[0m server is in progress******"
 PRIVATEIP="$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')"
 
-echo -e "Private ip of the $COMPONENT is $PRIVATEIP /n/n" 
+echo -e "Private ip of the $COMPONENT is $PRIVATEIP \n\n" 
 echo -e "Creating Dns record of ${COMPONENT} :"
 
-sed -e 's/COMPONENT/${COMPONENT}/' -e 's/IPADDRESS/${PRIVATEIP}/' route53.json > /tmp/r53.json
+sed -e "s/COMPONENT/${COMPONENT}/" -e "s/IPADDRESS/${PRIVATEIP}/" route53.json > /tmp/r53.json
 aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json
 
-
-
+echo -e "\e[35m *** Creating Dns Record for the $COMPONENT has Completed *** \e[0m"

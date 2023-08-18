@@ -15,11 +15,3 @@ echo "*******Creating $COMPONENT server is in progress******"
 PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
 echo "Private ip of the $COMPONENT is $PRIVATEIP"
-
-
-
- 
-
-
-
-#each and every resource that you create in end will have tags

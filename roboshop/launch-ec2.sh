@@ -19,4 +19,3 @@ aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --se
 
 
 #each and every resource that you create in end will have tags
-

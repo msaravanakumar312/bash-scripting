@@ -7,11 +7,16 @@ if [ -z $1 ] ; then
     exit 1
 fi
 
-AMI_ID="ami-0c1d144c8fdd8d690"
+AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq ".Images[].ImageId" | sed -e 's/"//g')"
+SG_ID="$(aws ec2 describe-security-groups --filters Name=group-name,Values=b55-allow-all | jq '.SecurityGroups[].GroupName' | sed -e 's/"//g')"    #b55-allow-all  security group id
 INSTANCE_TYPE="t3.micro"
-SG_ID="sg-014f2d8e59de1c638"            #b55-allow-all  security group id
+
+
 
 echo -e "*******Creating \e[35m ${COMPONENT} \e[0m server is in progress******"
-PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=lab}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+PRIVATEIP="$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=lab}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')"
 
 echo "Private ip of the $COMPONENT is $PRIVATEIP"
+
+
+

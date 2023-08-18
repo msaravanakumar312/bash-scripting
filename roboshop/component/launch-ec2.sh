@@ -12,9 +12,9 @@ INSTANCE_TYPE="t3.micro"
 SG_ID="sg-014f2d8e59de1c638"            #b55-allow-all  security group id
 
 
-aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --subnet-id subnet-6
+aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]'
 
---tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]' 
+ 
 
 
 

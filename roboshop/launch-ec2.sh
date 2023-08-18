@@ -12,6 +12,6 @@ INSTANCE_TYPE="t3.micro"
 SG_ID="sg-014f2d8e59de1c638"            #b55-allow-all  security group id
 
 echo "*******Creating $COMPONENT server is in progress******"
-PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=lab}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
 echo "Private ip of the $COMPONENT is $PRIVATEIP"

@@ -3,7 +3,6 @@
 COMPONENT=$1
 INSTANCE_TYPE="t3.micro"
 HOSTEDZONEID="Z0475481NBO60TX4OZ6V"
-ENV=$2
 
 if [ -z $1 ] ; then
     echo -e "\e[31m COMPONENT NAME IS NEEDED \e[0m \n \t \t"

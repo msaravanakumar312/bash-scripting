@@ -26,7 +26,7 @@ Create_ec2 () {
 
     aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json
     echo -e "\e[35m *** Creating Dns Record for the $COMPONENT has Completed *** \e[0m \n\n"
-    echo -e "Private Ip Address of the $COMPONENT is created and ready to use on ${COMPONENT}.roboshop.internal"
+    #echo -e "Private Ip Address of the $COMPONENT is created and ready to use on ${COMPONENT}.roboshop.internal"
 }
 
 if [ "$1" == "all" ]; then

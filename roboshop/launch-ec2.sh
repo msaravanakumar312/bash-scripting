@@ -19,7 +19,7 @@ HOSTEDZONEID="Z0475481NBO60TX4OZ6V"
 
 
 echo -e "**** Creating \e[35m ${COMPONENT} \e[0m Server Is IN Progress ****"
-PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 echo -e "Private Ip Address of the $COMPONENT is $PRIVATEIP \n\n"
 echo -e "Creating DNS record of ${COMPONENT} :"
 

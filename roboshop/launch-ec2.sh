@@ -15,6 +15,6 @@ SG_ID="sg-014f2d8e59de1c638"
 #HOSTEDZONEID="Z0475481NBO60TX4OZ6V"
 
 
-aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}]'
+aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}]"
 
 

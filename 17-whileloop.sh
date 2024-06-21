@@ -1,6 +1,7 @@
-#!/bin/csh
+#!/bin/bash
 c=1
-while ( $c <= 5 )
-	echo "Welcome $c times"
-	@ c = $c + 1
+while [ $c -le 5 ]
+do
+	echo "Welcone $c times"
+	(( c++ ))
 done

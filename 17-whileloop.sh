@@ -1,6 +1,6 @@
 #!/bin/bash
 c=2
-while [ $c -le 5 ]
+while [ $c > 5 ]
 do
 	echo "Welcone $c"
 	(( c++ ))

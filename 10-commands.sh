@@ -13,7 +13,6 @@ sample() {
     echo sample funtion is completed
 }
 
-sample
 hai() {
     echo "This is the function hai"
     echo "Hai function ompleted"

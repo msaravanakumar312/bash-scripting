@@ -13,22 +13,23 @@ sample() {
     echo sample funtion is completed
 }
 
+sample
+
 hai() {
     echo "This is the function hai"
     echo "Hai function ompleted"
 }
 
+hai
 
 Stat() {
     echo "Number of session opened are $(who | wc -l)"
     echo "Today date is $(date +%F)"
     echo "Average cpu utilizations in last 5 minutes $(uptime | awk -F : '{print $NF}' | awk -F : '{print $2}')"
 
-    hai
 }
 
 Stat
 
-hai
 
 

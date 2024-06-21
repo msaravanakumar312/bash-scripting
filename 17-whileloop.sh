@@ -1,5 +1,5 @@
 #!/bin/bash
-c=1
+c=2
 while [ $c -le 5 ]
 do
 	echo "Welcone $c"

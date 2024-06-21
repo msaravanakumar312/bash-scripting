@@ -11,6 +11,11 @@
 
 #for loop syntax
 
-for val in 10 20 30 40 50 ; do
+#for val in 10 20 30 40 50 ; do
+    echo "value for the loop is $val"
+#done
+
+
+for val in 1..20 ; do
     echo "value for the loop is $val"
 done

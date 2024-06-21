@@ -16,6 +16,6 @@
 #done
 
 
-for val in 1..20 ; do
+for val in 10 20 30 ; do
     echo "value for the loop is $val"
 done

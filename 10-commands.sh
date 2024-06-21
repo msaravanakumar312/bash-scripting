@@ -30,4 +30,6 @@ Stat() {
 
 Stat
 
+hai
+
 

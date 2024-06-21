@@ -12,7 +12,7 @@
 #esac
 
 
-ACTION=$2
+ACTION=$1
 
 case $ACTION in
 start) 
@@ -31,7 +31,7 @@ restart)
     ;;
 *)
     echo -e "\e[34m valid options are start or stop or restart \e[0m"
-    echo -e "\e[32m Example usage : bash scriptname stop "
+    echo -e "\e[32m Example usage : bash scriptname stop \e[0m"
     exit 3
     ;;
 esac

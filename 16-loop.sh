@@ -12,7 +12,7 @@
 #for loop syntax
 
 #for val in 10 20 30 40 50 ; do
-    echo "value for the loop is $val"
+    #echo "value for the loop is $val"
 #done
 
 

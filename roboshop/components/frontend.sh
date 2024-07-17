@@ -21,13 +21,13 @@ stat() {
 
 echo -e "\e[31m configuring ${COMPONENT}...! \e[0m \n"
 
-echo -n "Installing ${COMPONENT} :"
-yum install nginx -y   &>> ${LOGFIlE}
+echo -n "Installing ${COMPONENT}:"
+yum install nginx -y   &>> ${LOGFILE}
 stat $?
 
 echo -n "Starting Nginx:"
-systemctl enable nginx  &>> ${LOGFIlE}
-systemctl start nginx   &>> ${LOGFIlE}
+systemctl enable nginx  &>> ${LOGFILE}
+systemctl start nginx   &>> ${LOGFILE}
 stat $?
 
 echo -n "Downloading the ${COMPONENT} component :"
@@ -37,20 +37,20 @@ stat $?
 
 echo -n "Clean up of ${COMPONENT}:"
 cd /usr/share/nginx/html
-rm -rf *   &>> ${LOGFIlE}
+rm -rf *   &>> ${LOGFILE}
 stat $?
 
 echo -n "Extracting Nginx:"
-unzip /tmp/${COMPONENT}.zip   &>> ${LOGFIlE}
-mv ${COMPONENT}-main/* .   &>> ${LOGFIlE}
-mv static/* .             &>> ${LOGFIlE}
-rm -rf ${COMPONENT}-main README.md   &>> ${LOGFIlE}
+unzip /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
+mv ${COMPONENT}-main/* .   &>> ${LOGFILE}
+mv static/* .             &>> ${LOGFILE}
+rm -rf ${COMPONENT}-main README.md   &>> ${LOGFILE}
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "Restarting the Nginx:"
-systemctl deamon-reload   &>> ${LOGFIlE}
-systemctl restart nginx   &>> ${LOGFIlE}
+systemctl deamon-reload   &>> ${LOGFILE}
+systemctl restart nginx   &>> ${LOGFILE}
 stat $?
 
 

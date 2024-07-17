@@ -2,7 +2,7 @@
 
 USER_ID=$(id -u)
 
-if [ $USER_ID -ne 0] ; then
+if [ $USER_ID -ne 0 ] ; then
     echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh"
     exit 1
 fi

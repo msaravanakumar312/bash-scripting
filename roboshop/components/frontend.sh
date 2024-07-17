@@ -18,9 +18,26 @@ else
     echo -e "\e[31m Failure \e[0m"
 fi
 
-# systemctl enable nginx
-# systemctl start nginx
-# curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+echo -n "\e[31m Strating Nginx: \e[0m"
+
+systemctl enable nginx
+systemctl start nginx
+
+if [ $? -eq 0 ] ; then
+    echo -e "\e[31m Success \e[0m"
+else
+    echo -e "\e[31m Failure \e[0m"
+fi
+
+echo -n "\e[31m Downloading the frontend component: \e[0m"
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+
+if [ $? -eq 0 ] ; then
+    echo -e "\e[31m Success \e[0m"
+else
+    echo -e "\e[31m Failure \e[0m"
+fi
+
 # cd /usr/share/nginx/html
 # rm -rf *
 # unzip /tmp/frontend.zip

@@ -1,9 +1,10 @@
 #!/bin/bash
 
+set -e
 
 USER_ID=$(id -u)
 COMPONENT=$1
-LOGFILE=/tmp/frontend.log
+LOGFILE="/tmp/{COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ] ; then
     echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh"
@@ -39,18 +40,18 @@ cd /usr/share/nginx/html
 rm -rf *   &>> {LOGFIlE}
 stat $?
 
-echo -n "Extracting {COMPONENT}:"
+echo -n "Extracting Nginx:"
 unzip /tmp/{COMPONENT}.zip   &>> {LOGFIlE}
 stat $?
 
-echo -n "Sorting of {COMPONENT}:"
+echo -n "Sorting of Nginx:"
 mv {COMPONENT}-main/* .   &>> {LOGFIlE}
 mv static/* .             &>> {LOGFIlE}
 rm -rf {COMPONENT}-main README.md   &>> {LOGFIlE}
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-echo -n "Restarting the {COMPONENT}:"
+echo -n "Restarting the Nginx:"
 systemctl deamon-reload   &>> {LOGFIlE}
 systemctl restart nginx   &>> {LOGFIlE}
 stat $?

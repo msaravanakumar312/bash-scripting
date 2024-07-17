@@ -18,7 +18,7 @@ else
     echo -e "\e[31m Failure \e[0m"
 fi
 
-echo -n "\e[31m Strating Nginx: \e[0m"
+echo -n "Strating Nginx :"
 
 systemctl enable nginx
 systemctl start nginx
@@ -29,7 +29,7 @@ else
     echo -e "\e[31m Failure \e[0m"
 fi
 
-echo -n "\e[31m Downloading the frontend component: \e[0m"
+echo -n "Downloading the frontend component :"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
 if [ $? -eq 0 ] ; then

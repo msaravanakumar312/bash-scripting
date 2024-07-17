@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 USER_ID=$(id -u)
 COMPONENT=frontend
 LOGFILE="/tmp/${COMPONENT}.log"
@@ -40,11 +38,11 @@ cd /usr/share/nginx/html
 rm -rf *   &>> ${LOGFILE}
 stat $?
 
-echo -n "Extracting Nginx:"
-unzip /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
-mv ${COMPONENT}-main/* .   &>> ${LOGFILE}
-mv static/* .             &>> ${LOGFILE}
-rm -rf ${COMPONENT}-main README.md   &>> ${LOGFILE}
+echo -n "Extracting ${COMPONENT}:"
+unzip /tmp/frontend.zip   &>> ${LOGFILE}
+mv ${COMPONENT}-main/* .   
+mv static/* .             
+rm -rf ${COMPONENT}-main README.md   
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 

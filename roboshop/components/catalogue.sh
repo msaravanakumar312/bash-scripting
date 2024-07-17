@@ -1,4 +1,3 @@
 #!/bin/bash
 
-
-echo I am catalogue
+echo "I am frontend"

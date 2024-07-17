@@ -36,7 +36,7 @@ cd /usr/share/nginx/html
 rm -rf *   &>> /tmp/frontend.log
 stat $?
 
-echo -n "Extracing frontend:"
+echo -n "Extracting frontend:"
 unzip /tmp/frontend.zip   &>> /tmp/frontend.log
 stat $?
 

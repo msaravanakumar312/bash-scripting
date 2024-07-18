@@ -45,6 +45,26 @@ rm -rf ${COMPONENT}    &>> ${LOGFILE}
 unzip /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
 stat $?
 
+echo -n "Changing the ownership :"
+chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
+stat $?
+
+echo -n "Generating the ${COMPONENT} artifacts :"
+cd /home/${APPUSER}/${COMPONENT}
+npm install    &>> ${LOGFILE}
+stat $?
+
+echo -n "Configuring the ${COMPONENT} system file :"
+sed -ie 's/MONGO_DNSNAME/172.31.34.131/g' /home/${APPUSER}/${COMPONENT}/systemd.servce
+mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
+
+echo -n "Starting the ${COMPONENT} service :"
+systemctl daemon-reload        &>> ${LOGFILE}
+systemctl restart ${COMPONENT} &>> ${LOGFILE}
+stat $?
+
+
 
 
 

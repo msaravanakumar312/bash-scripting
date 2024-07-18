@@ -35,12 +35,16 @@ if [ $? -ne 0 ] ; then
     stat $?
 fi
 
-echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
+
+echo -n "Downloading the ${COMPONENT} file :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-cd /home/${APPUSER}/
-rm -rf ${COMPONENT}    &>> ${LOGFILE}
-unzip /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
 stat $?
+
+#echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
+#cd /home/${APPUSER}/
+#rm -rf ${COMPONENT}    &>> ${LOGFILE}
+#unzip /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
+#stat $?
 
 #echo -n "Changing the ownership :"
 #chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}

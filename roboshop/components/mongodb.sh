@@ -20,7 +20,7 @@ stat() {
 echo -e "\e[33m configuring ${COMPONENT}...! \e[0m \n"
 
 echo -n "Installing ${COMPONENT} repo :"    
-curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongodb.repo
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
 stat $?
 
 echo -n "Installing ${COMPONENT} :"

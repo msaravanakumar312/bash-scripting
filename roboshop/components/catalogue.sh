@@ -6,7 +6,7 @@ LOGFILE="/tmp/${COMPONENT}.log"
 APPUSER=roboshop
 
 if [ $USER_ID -ne 0 ] ; then
-    echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh ${COMPONENT}"
+    echo -e "\e[35m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh ${COMPONENT}"
     exit 1
 fi
 
@@ -56,16 +56,17 @@ cd /home/${APPUSER}/${COMPONENT}
 npm install    &>> ${LOGFILE}
 stat $?
 
-#echo -n "Configuring the ${COMPONENT} system file :"
-#sed -ie 's/MONGO_DNSNAME/172.31.34.131/g' /home/${APPUSER}/${COMPONENT}/systemd.servce
-#mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-#stat $?
+echo -n "Configuring the ${COMPONENT} system file :"
+sed -ie 's/MONGO_DNSNAME/172.31.34.131/g' /home/${APPUSER}/${COMPONENT}/systemd.servce
+mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
 
-#echo -n "Starting the ${COMPONENT} service :"
-#systemctl daemon-reload        &>> ${LOGFILE}
-#systemctl restart ${COMPONENT} &>> ${LOGFILE}
-#stat $?
+echo -n "Starting the ${COMPONENT} service :"
+systemctl daemon-reload        &>> ${LOGFILE}
+systemctl restart ${COMPONENT} &>> ${LOGFILE}
+stat $?
 
+echo -e "\e[35m ${COMPONENT} Installation Is completed \e[0m \n"
 
 
 

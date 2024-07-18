@@ -5,7 +5,7 @@ COMPONENT=catalogue
 LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ] ; then
-    echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh ${COMPONENT}"
+    echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh catalogue"
     exit 1
 fi
 
@@ -17,10 +17,10 @@ stat() {
     fi
 }
 
-echo -e "\e[33m configuring ${COMPONENT}...! \e[0m \n"
+echo -e "\e[33m configuring ${COMPONENT} ...! \e[0m \n"
 
 echo -n "Configuring ${COMPONENT} repo :"   
-yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
 stat $?
 
 echo -n "Installing NodeJS :"

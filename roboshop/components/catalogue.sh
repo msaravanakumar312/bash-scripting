@@ -47,11 +47,10 @@ stat $?
 
 echo -n "Changing the ownership :"
 mv ${COMPONENT}-main ${COMPONENT}  &>> ${LOGFILE}
-chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
+chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}/
 stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts :"
-mv ${COMPONENT}-main ${COMPONENT}  &>> ${LOGFILE}
 cd /home/${APPUSER}/${COMPONENT}
 npm install    &>> ${LOGFILE}
 stat $?

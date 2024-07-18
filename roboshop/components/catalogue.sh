@@ -47,7 +47,7 @@ unzip -o /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
 stat $?
 
 echo -n "Changing the ownership :"
-mv ${COMPONENT}-main ${COMPONENT}  &>> ${LOGFILE}
+mv ${COMPONENT}-main ${COMPONENT}  
 chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}/
 stat $?
 
@@ -56,8 +56,8 @@ cd /home/${APPUSER}/${COMPONENT}/
 npm install    &>> ${LOGFILE}
 stat $?
 
-echo -n "Configuring the ${COMPONENT} system file :"
-sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/g' systemd.servce
+echo -n "Updating the ${COMPONENT} system file :"
+sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 

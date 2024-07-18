@@ -25,7 +25,7 @@ stat $?
 
 echo -n "Installing ${COMPONENT} :"
 yum install -y mongodb-org     &>> ${LOGFILE}
-stst $?
+stat $?
 
 echo -n "Enabling the ${COMPONENT} Visibility :"
 sed -ie 's/127.0.0.0/0.0.0.0.0/g' /etc/mongod.conf  &>> ${LOGFILE}

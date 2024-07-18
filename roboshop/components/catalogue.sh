@@ -20,7 +20,7 @@ stat() {
 echo -e "\e[33m configuring ${COMPONENT}...! \e[0m \n"
 
 echo -n "Configuring ${COMPONENT} repo :"   
-curl --silent --location https://rpm.nodesource.com/pub_16.x
+curl --silent --location https://rpm.nodesource.com/pub_16.x | sudo bash -
 stat $?
 
 echo -n "Installing NodeJS :"

@@ -46,7 +46,7 @@ unzip -o /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
 stat $?
 
 echo -n "Changing the ownership :"
-mv ${COMPONENT}-main ${COMPONENT}
+mv ${COMPONENT}-main ${COMPONENT}  &>> ${LOGFILE}
 chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
 stat $?
 
@@ -57,7 +57,7 @@ stat $?
 
 echo -n "Configuring the ${COMPONENT} system file :"
 sed -ie 's/MONGO_DNSNAME/172.31.34.131/g' /home/${APPUSER}/${COMPONENT}/systemd.servce
-#mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
 echo -n "Starting the ${COMPONENT} service :"

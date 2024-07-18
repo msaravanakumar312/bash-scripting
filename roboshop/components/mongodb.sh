@@ -32,8 +32,8 @@ sed -ie 's/127.0.0.0/0.0.0.0.0/g' /etc/${COMPONENT}.conf  &>> ${LOGFILE}
 stat $?
 
 echo -n "Starting the ${COMPONENT} :"
-systemctl enable mongodb
-systemctl start mongodb
+systemctl enable mongod
+systemctl start mongod
 stat $?
 
 echo -n "Downloading the ${COMPONENT} schema :"

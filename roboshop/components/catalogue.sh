@@ -19,8 +19,8 @@ stat() {
 
 echo -e "\e[33m configuring ${COMPONENT}...! \e[0m \n"
 
-echo -n "Installing Nodejs repo :"    &>> ${LOGFILE}
-yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+echo -n "Installing Nodejs repo :"   
+yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y  &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing NOdejs :"

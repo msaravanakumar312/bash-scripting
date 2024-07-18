@@ -51,6 +51,7 @@ chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
 stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts :"
+mv ${COMPONENT}-main ${COMPONENT}  &>> ${LOGFILE}
 cd /home/${APPUSER}/${COMPONENT}
 npm install    &>> ${LOGFILE}
 stat $?

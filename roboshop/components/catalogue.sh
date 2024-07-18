@@ -41,18 +41,18 @@ curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${CO
 stat $?
 
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
-cd /home/${APPUSER}
+cd /home/${APPUSER}/
 rm -rf ${COMPONENT}    &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
 stat $?
 
 echo -n "Changing the ownership :"
 mv ${COMPONENT}-main ${COMPONENT}  &>> ${LOGFILE}
-chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
+chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}/
 stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts :"
-cd /home/${APPUSER}/${COMPONENT}
+cd /home/${APPUSER}/${COMPONENT}/
 npm install    &>> ${LOGFILE}
 stat $?
 

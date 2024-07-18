@@ -58,7 +58,7 @@ stat $?
 
 echo -n "Configuring the ${COMPONENT} system file :"
 sed -ie 's/MONGO_DNSNAME/172.31.34.131/g' /home/${APPUSER}/${COMPONENT}/systemd.servce
-mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
 echo -n "Starting the ${COMPONENT} service :"

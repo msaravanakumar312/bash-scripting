@@ -6,7 +6,7 @@ LOGFILE="/tmp/${COMPONENT}.log"
 APPUSER=roboshop
 
 if [ $USER_ID -ne 0 ] ; then
-    echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh catalogue"
+    echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh ${COMPONENT}"
     exit 1
 fi
 

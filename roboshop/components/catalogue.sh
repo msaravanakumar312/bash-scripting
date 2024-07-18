@@ -1,4 +1,31 @@
 #!/bin/bash
 
+USER_ID=$(id -u)
+COMPONENT=catalogue
+LOGFILE="/tmp/${COMPONENT}.log"
 
-echo "I am catalogue"
+if [ $USER_ID -ne 0 ] ; then
+    echo -e "\e[32m Script is expected to excuted by the root user or sudo previllage \e[0m \n \t Example: sudo bash wrapper.sh ${COMPONENT}"
+    exit 1
+fi
+
+stat() {
+    if [ $1 -eq 0 ] ; then
+        echo -e "\e[32m Success \e[0m"
+    else
+        echo -e "\e[32m Failure \e[0m"
+    fi
+}
+
+echo -e "\e[33m configuring ${COMPONENT}...! \e[0m \n"
+
+echo -n "Installing Nodejs repo :"    
+yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+stat $?
+
+echo -n "Installing NOdejs :"
+yum install nodejs -y     &>> ${LOGFILE}
+stat $?
+
+
+

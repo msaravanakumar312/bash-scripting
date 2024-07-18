@@ -28,7 +28,7 @@ yum install -y mongodb-org     &>> ${LOGFILE}
 stat $?
 
 echo -n "Enabling the ${COMPONENT} Visibility :"
-sed -ie 's/127.0.0.0/0.0.0.0.0/g' /etc/${COMPONENT}.conf  &>> ${LOGFILE}
+sed -ie 's/127.0.0.0/0.0.0.0.0/g' /etc/mongod.conf  &>> ${LOGFILE}
 stat $?
 
 echo -n "Starting the ${COMPONENT} :"

@@ -43,13 +43,13 @@ stat $?
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}    &>> ${LOGFILE}
-unzip /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
+unzip -o /tmp/${COMPONENT}.zip   &>> ${LOGFILE}
 mv ${COMPONENT}-main ${COMPONENT}
 stat $?
 
-#echo -n "Changing the ownership :"
-#chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
-#stat $?
+echo -n "Changing the ownership :"
+chown -R ${APPUSER}:${APPUSER}  /home/${APPUSER}/${COMPONENT}
+stat $?
 
 #echo -n "Generating the ${COMPONENT} artifacts :"
 #cd /home/${APPUSER}/${COMPONENT}

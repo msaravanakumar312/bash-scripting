@@ -52,7 +52,7 @@ mongo < users.js       &>> ${LOGFILE}
 stat $?
 
 echo -n "Restarting the ${COMPONENT} :"
-systemctl deamon-reload
+systemctl daemon-reload
 systemctl restart mongodb
 stat $?
 
